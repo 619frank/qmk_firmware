@@ -29,6 +29,7 @@ enum my_keycodes {
     DRAG_SCROLL,
 };
 
+
 enum combos {
     WY_TAB,
     DH_CAPS,
@@ -81,49 +82,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,                KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,
         LGUI_T(KC_A),      LALT_T(KC_S),      LCTL_T(KC_D),      LSFT_T(KC_F),      KC_G,                KC_H,              RSFT_T(KC_J),      RCTL_T(KC_K),      RALT_T(KC_L),      RGUI_T(KC_QUOT),
         KC_Z,              ALGR_T(KC_X),      KC_C,              KC_V,              KC_B,                KC_N,              KC_M,              KC_COMM,           ALGR_T(KC_DOT),    KC_SLSH,
-                                              LT(1, KC_ESC),     LT(2, KC_SPC),     LT(3, KC_TAB),       LT(4, KC_ENT),     LT(5, KC_BSPC),    LT(6, KC_DEL)
+                                              LT(3, KC_TAB),     LT(2, KC_SPC),     LT(1, KC_ESC),       LT(6, KC_DEL),     LT(5, KC_BSPC),    LT(4, KC_ENT)
     ),
 
     [_MEDIA] = LAYOUT_default(
         KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,               KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,
         KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           KC_NO,               KC_NO,             KC_MPRV,           KC_VOLD,           KC_VOLU,           KC_MNXT,
         KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,               KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,
-                                              KC_NO,             KC_NO,             KC_MSTP,             KC_MPLY,           KC_MUTE,           KC_NO
+                                              KC_NO,             KC_NO,             KC_NO,               KC_MUTE,           KC_MPLY,           KC_MSTP
     ),
 
     [_NAV] = LAYOUT_default(
         KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,               KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,
         KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           KC_NO,               KC_NO,             KC_LEFT,           KC_DOWN,           KC_UP,             KC_RGHT,
         KC_NO,             KC_NO,             KC_COPY,           KC_PSTE,           KC_NO,               KC_NO,             KC_HOME,           KC_PGDN,           KC_PGUP,           KC_END,
-                                              KC_NO,             KC_NO,             KC_ENT,              KC_BSPC,           KC_DEL,            KC_NO
+                                              KC_NO,             KC_NO,             KC_NO,               KC_DEL,            KC_BSPC,           KC_ENT
     ),
 
     [_MOUS] = LAYOUT_default(
         KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,               KC_NO,             MSE_INC,           MSE_DEC,           KC_NO,             KC_NO,
         KC_BTN3,           KC_BTN1,           KC_BTN2,           DRAG_SCROLL,       KC_NO,               KC_NO,             KC_RSFT,           KC_RCTL,           KC_RALT,           KC_RGUI,
         KC_UNDO,           KC_CUT,            KC_COPY,           KC_PASTE,          KC_NO,               KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,
-                                              KC_NO,             KC_NO,             KC_NO,               KC_BTN1,           KC_BTN3,           KC_NO
+                                              KC_NO,             KC_NO,             KC_NO,               KC_BTN2,           KC_BTN1,           KC_BTN2
     ),
 
     [_MOUSRIGHT] = LAYOUT_default(
         KC_NO,             KC_NO,             MSE_DEC,           MSE_INC,           KC_NO,               KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,
         KC_LGUI,           KC_LALT,           KC_LCTL,           KC_LSFT,           KC_NO,               KC_NO,             DRAG_SCROLL,       KC_BTN2,           KC_BTN1,           KC_BTN3,
         KC_NO,             KC_NO,             KC_NO,             KC_NO,             KC_NO,               KC_NO,             KC_PASTE,          KC_COPY,           KC_CUT,            KC_UNDO,
-                                              KC_BTN3,           KC_BTN1,           KC_BTN2,             KC_NO,             KC_NO,             KC_NO
+                                              KC_BTN2,           KC_BTN1,           KC_BTN3,             KC_NO,             KC_NO,             KC_NO
     ),
 
     [_NUM] = LAYOUT_default(
         KC_LBRC,           KC_7,              KC_8,              KC_9,              KC_RBRC,            KC_NO,              KC_NO,              KC_NO,              KC_NO,              KC_NO,
         KC_SCLN,           KC_4,              KC_5,              KC_6,              KC_EQL,             KC_NO,              KC_LSFT,           KC_LCTL,             KC_LALT,            KC_LGUI,
         KC_GRV,            KC_1,              KC_2,              KC_3,              KC_BSLS,            KC_NO,              KC_NO,              KC_NO,              KC_NO,              KC_NO,
-                                              KC_DOT,            KC_0,              KC_MINS,            KC_NO,              KC_NO,              KC_NO
+                                              KC_MINS,           KC_0,              KC_DOT,             KC_NO,              KC_NO,              KC_NO
     ),
 
     [_FUNC] = LAYOUT_default(
         KC_F12,            KC_F7,             KC_F8,             KC_F9,             KC_PSCR,            KC_NO,              KC_NO,              KC_NO,              KC_NO,              KC_NO,
         KC_F11,            KC_F4,             KC_F5,             KC_F6,             KC_SCRL,            KC_NO,              KC_LSFT,            KC_LCTL,            KC_LALT,            KC_LGUI,
         KC_F10,            KC_F1,             KC_F2,             KC_F3,             KC_PAUS,            KC_NO,              KC_NO,              KC_NO,              KC_NO,              KC_NO,
-                                              KC_APP,            KC_SPC,            KC_TAB,             KC_NO,              KC_NO,              KC_NO
+                                              KC_TAB,            KC_SPC,            KC_APP,             KC_NO,              KC_NO,              KC_NO
     )
 };
 
@@ -191,7 +192,7 @@ void keyboard_post_init_user(void) {
     write_config_to_eeprom(&global_user_config);
 }
 
-void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_MOUS);
-    set_auto_mouse_enable(true);
-}
+// void pointing_device_init_user(void) {
+//     set_auto_mouse_layer(_MOUS);
+//     set_auto_mouse_enable(true);
+// }

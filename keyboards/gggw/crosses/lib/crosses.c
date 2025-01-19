@@ -57,7 +57,8 @@ uint16_t get_pointer_dpi(global_user_config_t* config) {
 
 void update_pointer_cpi(global_user_config_t* config) {
 #ifdef POINTING_DEVICE_COMBINED
-    pointing_device_set_cpi_on_side(true, 1000);
+    // pointing_device_set_cpi_on_side(true, 1000);
+    pointing_device_set_cpi_on_side(true, get_pointer_dpi(config));
     pointing_device_set_cpi_on_side(false, get_pointer_dpi(config));
 #endif /* ifdef POINTING_DEVICE_COMBINED */
 
@@ -153,22 +154,33 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 #ifdef POINTING_DEVICE_COMBINED
 
 report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    // Calculate and accumulate scroll values based on mouse movement and divisors
-    scroll_acc_h += (float)left_report.x / SCROLL_DIVISOR_H;
-    scroll_acc_v += (float)left_report.y / SCROLL_DIVISOR_V;
 
-    // Assign integer parts of accumulated scroll values to the mouse report
-    left_report.h = (int16_t)scroll_acc_h;
-    left_report.v = (int16_t)scroll_acc_v;
+    if (set_scrolling) {
+        // // Calculate and accumulate scroll values based on mouse movement and divisors
+        // scroll_acc_h += (float)left_report.x / SCROLL_DIVISOR_H;
+        // scroll_acc_v += (float)left_report.y / SCROLL_DIVISOR_V;
 
-    // Update accumulated scroll values by subtracting the integer parts
-    scroll_acc_h -= (int16_t)scroll_acc_h;
-    scroll_acc_v -= (int16_t)scroll_acc_v;
+        // // Assign integer parts of accumulated scroll values to the mouse report
+        // left_report.h = (int16_t)scroll_acc_h;
+        // left_report.v = (int16_t)scroll_acc_v;
 
-    // Clear the X and Y values of the mouse report
-    left_report.x = 0;
-    left_report.y = 0;
+        // // Update accumulated scroll values by subtracting the integer parts
+        // scroll_acc_h -= (int16_t)scroll_acc_h;
+        // scroll_acc_v -= (int16_t)scroll_acc_v;
 
+        // // Clear the X and Y values of the mouse report
+        // left_report.x = 0;
+        // left_report.y = 0;
+        left_report.h = left_report.x;
+        left_report.v = left_report.y;
+        left_report.x = 0;
+        left_report.y = 0;
+
+        right_report.h = right_report.x;
+        right_report.v = right_report.y;
+        right_report.x = 0;
+        right_report.y = 0;
+    }
     return pointing_device_combine_reports(left_report, right_report);
 }
 
