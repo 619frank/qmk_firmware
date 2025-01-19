@@ -156,30 +156,39 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
 
     if (set_scrolling) {
-        // // Calculate and accumulate scroll values based on mouse movement and divisors
-        // scroll_acc_h += (float)left_report.x / SCROLL_DIVISOR_H;
-        // scroll_acc_v += (float)left_report.y / SCROLL_DIVISOR_V;
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_acc_h += (float)left_report.x / SCROLL_DIVISOR_H;
+        scroll_acc_v += (float)left_report.y / SCROLL_DIVISOR_V;
 
-        // // Assign integer parts of accumulated scroll values to the mouse report
-        // left_report.h = (int16_t)scroll_acc_h;
-        // left_report.v = (int16_t)scroll_acc_v;
+        // Assign integer parts of accumulated scroll values to the mouse report
+        left_report.h = (int16_t)scroll_acc_h;
+        left_report.v = (int16_t)scroll_acc_v;
 
-        // // Update accumulated scroll values by subtracting the integer parts
-        // scroll_acc_h -= (int16_t)scroll_acc_h;
-        // scroll_acc_v -= (int16_t)scroll_acc_v;
+        // Update accumulated scroll values by subtracting the integer parts
+        scroll_acc_h -= (int16_t)scroll_acc_h;
+        scroll_acc_v -= (int16_t)scroll_acc_v;
 
-        // // Clear the X and Y values of the mouse report
-        // left_report.x = 0;
-        // left_report.y = 0;
-        left_report.h = left_report.x;
-        left_report.v = left_report.y;
+        // Clear the X and Y values of the mouse report
         left_report.x = 0;
         left_report.y = 0;
+        
 
-        right_report.h = right_report.x;
-        right_report.v = right_report.y;
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_acc_h += (float)right_report.x / SCROLL_DIVISOR_H;
+        scroll_acc_v += (float)right_report.y / SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        right_report.h = (int16_t)scroll_acc_h;
+        right_report.v = (int16_t)scroll_acc_v;
+
+        // Update accumulated scroll values by subtracting the integer parts
+        scroll_acc_h -= (int16_t)scroll_acc_h;
+        scroll_acc_v -= (int16_t)scroll_acc_v;
+
+        // Clear the X and Y values of the mouse report
         right_report.x = 0;
         right_report.y = 0;
+
     }
     return pointing_device_combine_reports(left_report, right_report);
 }
